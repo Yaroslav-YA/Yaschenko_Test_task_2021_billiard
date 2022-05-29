@@ -5,28 +5,66 @@ using UnityEngine;
 public class Push : MonoBehaviour
 {
     public Rigidbody2D ball;
-    bool is_drag;
+    bool is_drag=false;
     Vector2 start;
     Vector2 end;
     public int power_multiplier=10;
     Vector2 power_multiplier_vector;
+    LineRenderer line_renderer;
     // Start is called before the first frame update
     void Start()
     {
-        power_multiplier_vector = new Vector2(power_multiplier, power_multiplier);
+        line_renderer= GetComponent<LineRenderer>();
+        //power_multiplier_vector = new Vector2(power_multiplier, power_multiplier);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton (0)) {
+        /*if(Input.touchCount > 0)
+        {
+            if (Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                Debug.Log("start");
+                is_drag = true;
+            }
+        }*/
+        if (Input.touchCount > 0)
+        {
+            Debug.Log("Touch");
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            is_drag = true;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            start = ball.transform.position;
+            MouseUp();
+        }
+        if (is_drag)
+        {
+            start = ball.transform.position;
+            end = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            line_renderer.SetPosition(0, start);
+            line_renderer.SetPosition(1, end);
+            line_renderer.enabled = true;
+        }
+        else
+        {
+            line_renderer.enabled = false;
+        }
+        /*if (Input.GetMouseButton (1)) {
+            
             if (!is_drag)
             {
+                Debug.Log("start");                
                 MouseDown();
             }
         } else if (is_drag) {
             MouseUp();
-        };
+            Debug.Log("end");
+        };*/
     }
     void MouseDown()
     {
