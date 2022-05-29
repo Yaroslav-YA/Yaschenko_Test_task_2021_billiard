@@ -14,10 +14,12 @@ public class Push : MonoBehaviour
     public LineRenderer line_target;
     Ray2D ray;
     RaycastHit2D raycast;
+    //float drag;
     // Start is called before the first frame update
     void Start()
     {
         line_renderer= GetComponent<LineRenderer>();
+        //drag=ball.GetComponent<Collider2D>().
         //power_multiplier_vector = new Vector2(power_multiplier, power_multiplier);
     }
 
@@ -51,17 +53,23 @@ public class Push : MonoBehaviour
             end = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             line_renderer.SetPosition(0, start);
             //line_renderer.SetPosition(1, -end);
-            
-            ray.origin = start;
-            ray.direction = -end - start;
-            raycast= Physics2D.CircleCast(start, 0.5f, start - end);
-            Debug.Log(raycast.point);
-            line_renderer.SetPosition(1,raycast.centroid);
-            line_renderer.SetPosition(2,Vector2.Reflect((start - end)*power_multiplier, raycast.normal));
-            line_renderer.enabled = true;
-            line_target.SetPosition(0, raycast.collider.transform.position);
-            line_target.SetPosition(1,(raycast.point- raycast.normal)*power_multiplier*0.5f);
-            line_target.enabled = true;
+
+            /*ray.origin = start;
+            ray.direction = -end - start;*/
+            if (raycast = Physics2D.CircleCast(start, 0.5f, start - end))
+            {
+                Debug.Log(raycast.point);
+                line_renderer.SetPosition(1, raycast.centroid);
+                line_renderer.SetPosition(2, Vector2.Reflect((start - end) * power_multiplier, raycast.normal));
+                line_renderer.enabled = true;
+                line_target.SetPosition(0, raycast.collider.transform.position);
+                line_target.SetPosition(1, (raycast.point - raycast.normal) * power_multiplier * 0.5f);
+                line_target.enabled = true;
+            }
+            else
+            {
+                line_renderer.SetPosition(1,-end.normalized* CalculateDistance((Vector2.Distance(end, start) * -power_multiplier), ball.angularDrag));
+            }
         }
         else
         {
@@ -91,6 +99,14 @@ public class Push : MonoBehaviour
         //Debug.Log("start" + start + "end" + end + "end-start" + (end - start));
         ball.AddForce((end - start) * -power_multiplier) ;
         is_drag = false;
+    }
+    float CalculateDistance(float strength,float drag)
+    {
+        float distance;
+        float start_speed;
+        start_speed = strength * Time.fixedDeltaTime;
+        distance = Mathf.Pow(start_speed, 2)/(2*drag);
+        return distance;
     }
 }
 
