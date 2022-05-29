@@ -11,6 +11,7 @@ public class Push : MonoBehaviour
     public int power_multiplier=10;
     Vector2 power_multiplier_vector;
     LineRenderer line_renderer;
+    public LineRenderer line_target;
     Ray2D ray;
     RaycastHit2D raycast;
     // Start is called before the first frame update
@@ -58,10 +59,14 @@ public class Push : MonoBehaviour
             line_renderer.SetPosition(1,raycast.centroid);
             line_renderer.SetPosition(2,Vector2.Reflect((start - end)*power_multiplier, raycast.normal));
             line_renderer.enabled = true;
+            line_target.SetPosition(0, raycast.collider.transform.position);
+            line_target.SetPosition(1,(raycast.point- raycast.normal)*power_multiplier*0.5f);
+            line_target.enabled = true;
         }
         else
         {
             line_renderer.enabled = false;
+            line_target.enabled = false;
         }
         /*if (Input.GetMouseButton (1)) {
             
