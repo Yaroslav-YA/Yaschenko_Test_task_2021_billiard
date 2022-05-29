@@ -53,9 +53,10 @@ public class Push : MonoBehaviour
             
             ray.origin = start;
             ray.direction = -end - start;
-            raycast= Physics2D.CircleCast(start, 0.5f, -end+start);
+            raycast= Physics2D.CircleCast(start, 0.5f, start - end);
             Debug.Log(raycast.point);
             line_renderer.SetPosition(1,raycast.centroid);
+            line_renderer.SetPosition(2,Vector2.Reflect((start - end)*power_multiplier, raycast.normal));
             line_renderer.enabled = true;
         }
         else
