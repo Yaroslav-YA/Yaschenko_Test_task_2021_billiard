@@ -11,6 +11,8 @@ public class Push : MonoBehaviour
     public int power_multiplier=10;
     Vector2 power_multiplier_vector;
     LineRenderer line_renderer;
+    Ray2D ray;
+    RaycastHit2D raycast;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +49,13 @@ public class Push : MonoBehaviour
             start = ball.transform.position;
             end = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             line_renderer.SetPosition(0, start);
-            line_renderer.SetPosition(1, -end);
+            //line_renderer.SetPosition(1, -end);
+            
+            ray.origin = start;
+            ray.direction = -end - start;
+            raycast= Physics2D.CircleCast(start, 0.5f, -end+start);
+            Debug.Log(raycast.point);
+            line_renderer.SetPosition(1,raycast.centroid);
             line_renderer.enabled = true;
         }
         else
@@ -74,7 +82,7 @@ public class Push : MonoBehaviour
     void MouseUp()
     {
         end = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Debug.Log("start" + start + "end" + end + "end-start" + (end - start));
+        //Debug.Log("start" + start + "end" + end + "end-start" + (end - start));
         ball.AddForce((end - start) * -power_multiplier) ;
         is_drag = false;
     }

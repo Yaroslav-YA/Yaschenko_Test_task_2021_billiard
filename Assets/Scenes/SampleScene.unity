@@ -668,7 +668,7 @@ GameObject:
   - component: {fileID: 1801624210}
   - component: {fileID: 1801624209}
   - component: {fileID: 1801624208}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dynamic Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
