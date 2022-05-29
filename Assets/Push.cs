@@ -29,10 +29,10 @@ public class Push : MonoBehaviour
                 is_drag = true;
             }
         }*/
-        if (Input.touchCount > 0)
+        /*if (Input.touchCount > 0)
         {
             Debug.Log("Touch");
-        }
+        }*/
         if (Input.GetMouseButtonDown(0))
         {
             is_drag = true;
@@ -47,7 +47,7 @@ public class Push : MonoBehaviour
             start = ball.transform.position;
             end = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             line_renderer.SetPosition(0, start);
-            line_renderer.SetPosition(1, end);
+            line_renderer.SetPosition(1, -end);
             line_renderer.enabled = true;
         }
         else
@@ -75,7 +75,7 @@ public class Push : MonoBehaviour
     {
         end = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Debug.Log("start" + start + "end" + end + "end-start" + (end - start));
-        ball.AddForce((end - start) * power_multiplier) ;
+        ball.AddForce((end - start) * -power_multiplier) ;
         is_drag = false;
     }
 }
