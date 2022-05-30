@@ -22,6 +22,7 @@ public class Pocket : MonoBehaviour
         if (other.tag != border_tag)
         {
             Destroy(other.gameObject);
+            SceneReload.DestroyBall();
         }
     }
 }

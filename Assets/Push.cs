@@ -133,6 +133,7 @@ public class Push : MonoBehaviour
         float distance = end_speed * Mathf.Pow(1/*/Time.fixedDeltaTime*/ - drag, time) / Mathf.Log(1/*/Time.fixedDeltaTime*/ - drag);
         return Mathf.Abs(distance)+Time.fixedDeltaTime*strength*Time.fixedDeltaTime;
     }
+    
 }
 
     /*void OnMouseDown()
