@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4846844252570970096}
   - component: {fileID: 4846844252570970099}
   m_Layer: 0
-  m_Name: Circle
-  m_TagString: Untagged
+  m_Name: Pocket
+  m_TagString: border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

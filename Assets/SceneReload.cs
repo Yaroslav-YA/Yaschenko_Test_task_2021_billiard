@@ -10,11 +10,9 @@ public static class SceneReload
     public static void DestroyBall()
     {
         number_of_balls--;
-        //Debug.Log("ball");
         if (number_of_balls < 1)
         {
             SceneChange();
-            //Debug.Log("Balls"+number_of_balls);
         }
     }
     
