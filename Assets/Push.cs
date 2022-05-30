@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Push : MonoBehaviour
@@ -14,6 +12,7 @@ public class Push : MonoBehaviour
     public LineRenderer line_target;
     Ray2D ray;
     RaycastHit2D raycast;
+    public float end_speed=0.01f;
     //float drag;
     // Start is called before the first frame update
     void Start()
@@ -68,7 +67,9 @@ public class Push : MonoBehaviour
             }
             else
             {
-                line_renderer.SetPosition(1,-end.normalized* CalculateDistance((Vector2.Distance(end, start) * -power_multiplier), ball.angularDrag));
+                line_renderer.SetPosition(1,(end-start).normalized* CalculateDistanceToStop((Vector2.Distance((end- start) * -power_multiplier,start)), ball.angularDrag));
+                line_renderer.SetPosition(2, line_renderer.GetPosition(1));
+                line_renderer.enabled = true;
             }
         }
         else
@@ -107,6 +108,20 @@ public class Push : MonoBehaviour
         start_speed = strength * Time.fixedDeltaTime;
         distance = Mathf.Pow(start_speed, 2)/(2*drag);
         return distance;
+    }
+    float CalculateTimeToStop(float strength, float drag)
+    {
+        float start_speed;
+        float time;
+        start_speed = strength * Time.fixedDeltaTime;
+        time = Mathf.Log(start_speed/end_speed,1/*/Time.fixedDeltaTime*/-drag);
+        return time;
+    } 
+    float CalculateDistanceToStop(float strength, float drag)
+    {
+        float time = CalculateTimeToStop(strength, drag);
+        float distance = end_speed * Mathf.Pow(1/*/Time.fixedDeltaTime*/ - drag, time) / Mathf.Log(1/*/Time.fixedDeltaTime*/ - drag);
+        return distance+Time.fixedDeltaTime*strength*Time.fixedDeltaTime;
     }
 }
 
