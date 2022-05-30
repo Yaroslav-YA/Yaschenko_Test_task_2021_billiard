@@ -240,6 +240,7 @@ MonoBehaviour:
   ball: {fileID: 1801624208}
   power_multiplier: 10
   line_target: {fileID: 823112070}
+  end_speed: 0.01
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -539,7 +540,7 @@ GameObject:
   - component: {fileID: 1108112941}
   m_Layer: 0
   m_Name: Static Sprite
-  m_TagString: Untagged
+  m_TagString: border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -670,7 +671,7 @@ GameObject:
   - component: {fileID: 1312593853}
   m_Layer: 0
   m_Name: Static Sprite (1)
-  m_TagString: Untagged
+  m_TagString: border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

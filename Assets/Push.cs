@@ -13,6 +13,8 @@ public class Push : MonoBehaviour
     Ray2D ray;
     RaycastHit2D raycast;
     public float end_speed=0.01f;
+    float distance;
+    string border_tag = "border";
     //float drag;
     // Start is called before the first frame update
     void Start()
@@ -51,23 +53,31 @@ public class Push : MonoBehaviour
             start = ball.transform.position;
             end = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             line_renderer.SetPosition(0, start);
+            distance = CalculateDistanceToStop((Vector2.Distance((end - start) * -power_multiplier, start)), ball.angularDrag);
             //line_renderer.SetPosition(1, -end);
 
             /*ray.origin = start;
             ray.direction = -end - start;*/
-            if (raycast = Physics2D.CircleCast(start, 0.5f, start - end))
+            if (raycast = Physics2D.CircleCast(start, 0.5f, start - end,distance))
             {
                 Debug.Log(raycast.point);
                 line_renderer.SetPosition(1, raycast.centroid);
-                line_renderer.SetPosition(2, Vector2.Reflect((start - end) * power_multiplier, raycast.normal));
+                line_renderer.SetPosition(2, Vector2.Reflect((start - end)* power_multiplier, raycast.normal));
                 line_renderer.enabled = true;
-                line_target.SetPosition(0, raycast.collider.transform.position);
-                line_target.SetPosition(1, (raycast.point - raycast.normal) * power_multiplier * 0.5f);
-                line_target.enabled = true;
+                if (raycast.collider.tag != border_tag)
+                {
+                    line_target.SetPosition(0, raycast.collider.transform.position);
+                    line_target.SetPosition(1, (raycast.point - raycast.normal)*2f);
+                    line_target.enabled = true;
+                }
+                else
+                {
+                    line_target.enabled = false;
+                }
             }
             else
             {
-                line_renderer.SetPosition(1,(end-start).normalized* CalculateDistanceToStop((Vector2.Distance((end- start) * -power_multiplier,start)), ball.angularDrag));
+                line_renderer.SetPosition(1,(start-end).normalized* distance);
                 line_renderer.SetPosition(2, line_renderer.GetPosition(1));
                 line_renderer.enabled = true;
             }
@@ -121,7 +131,7 @@ public class Push : MonoBehaviour
     {
         float time = CalculateTimeToStop(strength, drag);
         float distance = end_speed * Mathf.Pow(1/*/Time.fixedDeltaTime*/ - drag, time) / Mathf.Log(1/*/Time.fixedDeltaTime*/ - drag);
-        return distance+Time.fixedDeltaTime*strength*Time.fixedDeltaTime;
+        return Mathf.Abs(distance)+Time.fixedDeltaTime*strength*Time.fixedDeltaTime;
     }
 }
 
