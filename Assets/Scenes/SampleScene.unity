@@ -135,13 +135,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 355071879}
     m_Modifications:
+    - target: {fileID: 4846844252570970096, guid: 94cd09899709eba4f9a0cb6c2823fd6e, type: 3}
+      propertyPath: m_Radius
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 4846844252570970098, guid: 94cd09899709eba4f9a0cb6c2823fd6e, type: 3}
       propertyPath: m_Name
       value: Pocket
       objectReference: {fileID: 0}
     - target: {fileID: 4846844252570970098, guid: 94cd09899709eba4f9a0cb6c2823fd6e, type: 3}
       propertyPath: m_TagString
-      value: border
+      value: pocket
       objectReference: {fileID: 0}
     - target: {fileID: 4846844252570970102, guid: 94cd09899709eba4f9a0cb6c2823fd6e, type: 3}
       propertyPath: m_RootOrder
@@ -291,7 +295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4846844252570970098, guid: 94cd09899709eba4f9a0cb6c2823fd6e, type: 3}
       propertyPath: m_TagString
-      value: border
+      value: pocket
       objectReference: {fileID: 0}
     - target: {fileID: 4846844252570970102, guid: 94cd09899709eba4f9a0cb6c2823fd6e, type: 3}
       propertyPath: m_RootOrder
@@ -626,7 +630,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 10
-  m_Depth: -1
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -692,8 +696,8 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1390005145
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
@@ -1089,8 +1093,8 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1390005145
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
@@ -1582,7 +1586,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4846844252570970098, guid: 94cd09899709eba4f9a0cb6c2823fd6e, type: 3}
       propertyPath: m_TagString
-      value: border
+      value: pocket
       objectReference: {fileID: 0}
     - target: {fileID: 4846844252570970102, guid: 94cd09899709eba4f9a0cb6c2823fd6e, type: 3}
       propertyPath: m_RootOrder
@@ -2044,7 +2048,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4846844252570970098, guid: 94cd09899709eba4f9a0cb6c2823fd6e, type: 3}
       propertyPath: m_TagString
-      value: border
+      value: pocket
       objectReference: {fileID: 0}
     - target: {fileID: 4846844252570970102, guid: 94cd09899709eba4f9a0cb6c2823fd6e, type: 3}
       propertyPath: m_RootOrder
@@ -2349,9 +2353,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1390005145
+  m_SortingLayer: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2476,7 +2480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4846844252570970098, guid: 94cd09899709eba4f9a0cb6c2823fd6e, type: 3}
       propertyPath: m_TagString
-      value: border
+      value: pocket
       objectReference: {fileID: 0}
     - target: {fileID: 4846844252570970102, guid: 94cd09899709eba4f9a0cb6c2823fd6e, type: 3}
       propertyPath: m_RootOrder
@@ -2610,9 +2614,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 355071879}
     m_Modifications:
+    - target: {fileID: 4846844252570970097, guid: 94cd09899709eba4f9a0cb6c2823fd6e, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846844252570970097, guid: 94cd09899709eba4f9a0cb6c2823fd6e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846844252570970097, guid: 94cd09899709eba4f9a0cb6c2823fd6e, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4846844252570970098, guid: 94cd09899709eba4f9a0cb6c2823fd6e, type: 3}
       propertyPath: m_Name
       value: Pocket0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846844252570970098, guid: 94cd09899709eba4f9a0cb6c2823fd6e, type: 3}
+      propertyPath: m_TagString
+      value: pocket
       objectReference: {fileID: 0}
     - target: {fileID: 4846844252570970102, guid: 94cd09899709eba4f9a0cb6c2823fd6e, type: 3}
       propertyPath: m_RootOrder

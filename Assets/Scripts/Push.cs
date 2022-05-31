@@ -19,9 +19,10 @@ public class Push : MonoBehaviour
 
     public float end_speed=0.01f;       //speed that considered like lowest speed 
     float distance;                     //distance that main ball will traveled after release
-    public float second_track = 0.00001f;   //length of line after collision for main ball
-    public float trail_track = 2f;     //length of line after collision for target
+    public float second_track = 0.00001f;//length of line after collision for main ball
+    public float trail_track = 2f;      //length of line after collision for target
     string border_tag = "border";       //tag for borders
+    string pocket_tag = "pocket";       //tag for pockets
     #endregion
     void Start()
     {
@@ -54,13 +55,21 @@ public class Push : MonoBehaviour
             if (raycast = Physics2D.CircleCast(start, 0.5f, start - end,distance)) //cast the ray
             {
                 line_renderer.SetPosition(1, raycast.centroid);
-                line_renderer.SetPosition(2, VectorToPointMultiplier(raycast.centroid, Vector2.Reflect((start - end) * power_multiplier, raycast.normal)-raycast.point, second_track));
+                if (raycast.collider.tag != "pocket")   //check that collider not a pocket
+                {
+                    line_renderer.SetPosition(2, VectorToPointMultiplier(raycast.point, Vector2.Reflect((start - end) , raycast.normal) + raycast.point, second_track));
+                }
+                else
+                {
+                    line_renderer.SetPosition(2, line_renderer.GetPosition(1));
+                }
                 line_renderer.enabled = true;
-
-                if (raycast.collider.tag != border_tag) //check that collider that was hit by ray do not a border
+                //Debug.Log("point" + raycast.point + "reflect" + Vector2.Reflect((start - end) * power_multiplier, raycast.normal));
+                if (raycast.collider.tag != border_tag&&raycast.collider.tag!=pocket_tag) //check that collider that was hit by ray not a border or pocket
                 {
                     line_target.SetPosition(0, raycast.collider.transform.position);
                     line_target.SetPosition(1, VectorToPointMultiplier(raycast.collider.transform.position, (raycast.point - raycast.normal),trail_track));
+                    
                     line_target.enabled = true;
                 }
                 else
