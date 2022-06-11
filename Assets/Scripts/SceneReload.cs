@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public static class SceneReload 
 {
-    public static int number_of_balls = 15;
+    const int start_number_of_balls = 15;
+    public static int number_of_balls = start_number_of_balls;
     
     public static void DestroyBall()
     {
@@ -18,6 +19,7 @@ public static class SceneReload
     
     public static void SceneChange()
     {
+        number_of_balls =start_number_of_balls;
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -6,6 +6,6 @@ public class DeleteMainBall : MonoBehaviour
 {
     private void OnDestroy()
     {
-        SceneReload.SceneChange();
+        //SceneReload.SceneChange();
     }
 }

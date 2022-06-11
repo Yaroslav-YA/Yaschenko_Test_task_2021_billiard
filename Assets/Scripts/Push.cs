@@ -55,7 +55,7 @@ public class Push : MonoBehaviour
             if (raycast = Physics2D.CircleCast(start, 0.5f, start - end,distance)) //cast the ray
             {
                 line_renderer.SetPosition(1, raycast.centroid);
-                if (raycast.collider.tag != "pocket")   //check that collider not a pocket
+                if (raycast.collider.tag != "pocket")   //check that collider is not a pocket
                 {
                     line_renderer.SetPosition(2, VectorToPointMultiplier(raycast.point, Vector2.Reflect((start - end) , raycast.normal) + raycast.point, second_track));
                 }
